@@ -1,0 +1,4 @@
+﻿cd /d C:\git\DN-Poderosa\build\
+
+buildall-release
+
