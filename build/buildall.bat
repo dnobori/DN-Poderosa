@@ -6,7 +6,7 @@ if "%1" == "" (
   goto :end
 )
 
-call "%VS120COMNTOOLS%\vsvars32.bat"
+call "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\VsDevCmd.bat"
 
 set CONFIGNAME=%1
 
@@ -47,4 +47,3 @@ goto end
 echo Build failed !!!
 
 :end
-pause

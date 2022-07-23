@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set ILMERGE=%ProgramFiles%\Microsoft\ILMerge\ILMerge.exe
+set ILMERGE=%ProgramFiles(x86)%\Microsoft\ILMerge\ILMerge.exe
 
 if not exist "%ILMERGE%" (
   echo ILMerge.exe is reuired to make a Monolithic-Poderosa.
@@ -25,7 +25,6 @@ for %%D in (Core Granados Macro Pipe Plugin PortForwardingCommand Protocols Seri
 )
 
 "%ILMERGE%" /targetplatform:v2 /target:winexe /copyattrs /allowMultiple /out:poderosa.monolithic.exe %ASSYS%
-pause
 
 goto end
 
