@@ -42,7 +42,7 @@ namespace Poderosa.View {
     /// <exclude/>
     public class CharacterDocumentViewer : Control, IPoderosaControl, ISelectionListener, SplitMarkSupport.ISite {
 
-        public const int BORDER = 2; //内側の枠線のサイズ
+        public const int BORDER = 5; //内側の枠線のサイズ
         internal const int TIMER_INTERVAL = 50; //再描画最適化とキャレット処理を行うタイマーの間隔
 
         private CharacterDocument _document;
@@ -612,9 +612,9 @@ namespace Poderosa.View {
             PointF pt2 = new PointF(pt1.X + profile.Pitch.Width - 2, pt1.Y);
             Pen p = _caret.ToPen(profile);
             g.DrawLine(p, pt1, pt2);
-            pt1.Y += 1;
+            /*pt1.Y += 1;
             pt2.Y += 1;
-            g.DrawLine(p, pt1, pt2);
+            g.DrawLine(p, pt1, pt2);*/
         }
 
         private void DrawBackgroundImage(Graphics g, Image img, ImageStyle style, Rectangle clip) {
