@@ -31,6 +31,7 @@
     <DocumentationFile>..\bin\Debug\Poderosa.XML</DocumentationFile>
     <NoWarn>1591</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,6 +43,7 @@
     <DocumentationFile>..\bin\Release\Poderosa.XML</DocumentationFile>
     <NoWarn>1591</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnitTest|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,7 +51,7 @@
     <DefineConstants>TRACE;EXECUTABLE,UNITTEST</DefineConstants>
     <DocumentationFile>..\bin\UnitTest\Poderosa.XML</DocumentationFile>
     <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <NoWarn>1591</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
