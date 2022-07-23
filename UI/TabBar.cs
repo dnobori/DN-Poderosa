@@ -20,6 +20,9 @@ using System.ComponentModel;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
 using Poderosa.Forms;
 using Poderosa.Util.Drawing;
@@ -104,7 +107,7 @@ namespace Poderosa.Forms {
 
         public static TabBarDrawing CreateNormalStyle(Graphics g) {
             TabBarDrawing t = new TabBarDrawing();
-            t._font = new Font(SystemFonts.DefaultFont.Name, 9f);
+            t._font = new Font("Tahoma", 9f);
 
             Color c = SystemColors.Control;
             t._backgroundColor = c;
@@ -707,11 +710,40 @@ namespace Poderosa.Forms {
             state.MarkSufficientWidthIsChanged(_parent);
         }
 
+        public static string NormalizeCaption(string str)
+        {
+            string ret = str;
+            bool is_ip = false;
+            if (str == null)
+            {
+                return null;
+            }
+
+            IPAddress ip;
+
+            if (IPAddress.TryParse(str, out ip))
+            {
+                is_ip = true;
+            }
+
+            if (is_ip == false)
+            {
+                string[] tokens = str.Split('.');
+
+                if (tokens.Length >= 1)
+                {
+                    ret = tokens[0];
+                }
+            }
+
+            return ret;
+        }
+
         internal int CalcSufficientWidth(Graphics g) {
             int img_width = _image == null ? 0 : _image.Width;
             TabBarDrawing d = GetDrawing();
             float index_width = g.MeasureString(_indexText, d.Font).Width;
-            float text_width = g.MeasureString(_tabKey.Caption, d.Font).Width;
+            float text_width = g.MeasureString(NormalizeCaption(_tabKey.Caption), d.Font).Width;
 
             _sufficientWidth =
                 img_width
@@ -737,7 +769,7 @@ namespace Poderosa.Forms {
             else
                 _showIndexText = false;
 
-            this.Text = _tabKey.Caption;
+            this.Text = NormalizeCaption(_tabKey.Caption);
             this.Width = width;
         }
 
@@ -843,7 +875,7 @@ namespace Poderosa.Forms {
                     clientSize.Height);
 
             g.DrawString(
-                _tabKey.Caption,
+                NormalizeCaption(_tabKey.Caption),
                 drawing.Font,
                 SystemBrushes.ControlText,
                 captionRect,
