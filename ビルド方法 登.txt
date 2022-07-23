@@ -1,4 +1,7 @@
-﻿cd /d C:\git\DN-Poderosa\build\
+﻿VS 2022 Pro
+
+
+cd /d C:\git\DN-Poderosa\build\
 
 buildall-release
 
