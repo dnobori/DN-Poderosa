@@ -11,9 +11,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Poderosa.Protocols</RootNamespace>
     <AssemblyName>Poderosa.ProtocolsTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>9b33558b</NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,10 +58,6 @@
     <Compile Include="TerminalParameterSerialize.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{8a416f19-9031-44a1-b225-bcb31a6bc6a7}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Granados\Granados.csproj">
       <Project>{9d114b8b-e62c-4fbf-b281-0227755c8091}</Project>
       <Name>Granados</Name>

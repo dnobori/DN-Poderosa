@@ -50,10 +50,6 @@
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Plugin\Plugin.csproj">
-      <Project>{d84b661b-503e-4c22-892b-7499b72c7e04}</Project>
-      <Name>Plugin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TestUtils\TestUtils.csproj">
       <Project>{cdfd920e-47a1-4c20-9e29-6a1cc8c50840}</Project>
       <Name>TestUtils</Name>

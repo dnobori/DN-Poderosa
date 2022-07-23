@@ -12,7 +12,7 @@
     <AssemblyName>Poderosa</AssemblyName>
     <StartupObject>Poderosa.Executable.Root</StartupObject>
     <ApplicationIcon>poderosa.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -79,5 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="poderosa.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
 </Project>

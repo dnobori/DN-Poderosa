@@ -11,9 +11,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Poderosa.TerminalEmulator</RootNamespace>
     <AssemblyName>Poderosa.TerminalEmulatorTest</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>845a0f78</NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,10 +60,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{8a416f19-9031-44a1-b225-bcb31a6bc6a7}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Plugin\Plugin.csproj">
       <Project>{d84b661b-503e-4c22-892b-7499b72c7e04}</Project>
       <Name>Plugin</Name>

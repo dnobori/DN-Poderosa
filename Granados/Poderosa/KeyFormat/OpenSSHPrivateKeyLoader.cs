@@ -21,6 +21,7 @@ using Granados.Crypto;
 using Granados.PKI;
 using Granados.Util;
 using Granados.Mono.Math;
+using ECPoint = Granados.PKI.ECPoint;
 
 namespace Granados.Poderosa.KeyFormat {
 

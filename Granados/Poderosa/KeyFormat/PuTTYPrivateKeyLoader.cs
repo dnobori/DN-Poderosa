@@ -23,6 +23,7 @@ using Granados.PKI;
 using Granados.IO.SSH2;
 using Granados.Util;
 using Granados.Mono.Math;
+using ECPoint = Granados.PKI.ECPoint;
 
 namespace Granados.Poderosa.KeyFormat {
 
