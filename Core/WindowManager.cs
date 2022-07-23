@@ -128,7 +128,7 @@ namespace Poderosa.Forms {
 
         private MainWindow CreateMainWindow(MainWindowArgument arg) {
             MainWindow w = new MainWindow(arg, _menu);
-            w.Text = "Poderosa";
+            w.Text = string.Format("Poderosa {0}", WindowCaptionManager.GetTimeStampStr());
             w.FormClosed += new FormClosedEventHandler(WindowClosedHandler);
             w.Activated += delegate(object sender, EventArgs args) {
                 _activeWindow = (MainWindow)sender; //最後にアクティブになったものを指定する

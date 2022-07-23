@@ -5,3 +5,8 @@ cd /d C:\git\DN-Poderosa\build\
 
 buildall-release
 
+
+
+
+C:\git\DN-Poderosa\build\out
+に生成される。

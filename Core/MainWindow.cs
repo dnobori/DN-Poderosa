@@ -31,6 +31,8 @@ using Poderosa.Commands;
 using Poderosa.UI;
 using Poderosa.View;
 using Poderosa.Util.Collections;
+using System.Reflection;
+using System.IO;
 
 namespace Poderosa.Forms {
     //メインウィンドウ
@@ -476,13 +478,471 @@ namespace Poderosa.Forms {
         }
     }
 
+    internal static class BuildTimeStampUtil
+    {
+        public static DateTime StrToDateTime(string str, bool toUtc = false, bool emptyToZeroDateTime = false)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                if (emptyToZeroDateTime) return new DateTime(0);
+                return new DateTime(0);
+            }
+            DateTime ret = new DateTime(0);
+
+            str = str.Trim();
+            string[] sps =
+                {
+                    " ",
+                    "_",
+                    "　",
+                    "\t",
+                    "T",
+                };
+
+            string[] tokens = str.Split(sps, StringSplitOptions.RemoveEmptyEntries);
+
+            if (tokens.Length != 2)
+            {
+                int r1 = str.IndexOf("年", StringComparison.OrdinalIgnoreCase);
+                int r2 = str.IndexOf("月", StringComparison.OrdinalIgnoreCase);
+                int r3 = str.IndexOf("日", StringComparison.OrdinalIgnoreCase);
+
+                if (r1 != -1 && r2 != -1 && r3 != -1)
+                {
+                    tokens = new string[2];
+
+                    tokens[0] = str.Substring(0, r3 + 1);
+                    tokens[1] = str.Substring(r3 + 1);
+                }
+            }
+
+            if (tokens.Length == 2)
+            {
+                DateTime dt1 = StrToDate(tokens[0]);
+                DateTime dt2 = StrToTime(tokens[1]);
+
+                ret = dt1.Date + dt2.TimeOfDay;
+            }
+            else if (tokens.Length == 1)
+            {
+                if (tokens[0].Length == 14)
+                {
+                    // yyyymmddhhmmss
+                    DateTime dt1 = StrToDate(tokens[0].Substring(0, 8));
+                    DateTime dt2 = StrToTime(tokens[0].Substring(8));
+
+                    ret = dt1.Date + dt2.TimeOfDay;
+                }
+                else if (tokens[0].Length == 12)
+                {
+                    // yymmddhhmmss
+                    DateTime dt1 = StrToDate(tokens[0].Substring(0, 6));
+                    DateTime dt2 = StrToTime(tokens[0].Substring(6));
+
+                    ret = dt1.Date + dt2.TimeOfDay;
+                }
+                else
+                {
+                    // 日付のみ
+                    DateTime dt1 = StrToDate(tokens[0]);
+
+                    ret = dt1.Date;
+                }
+            }
+            else
+            {
+                throw new ArgumentException(str);
+            }
+
+            if (toUtc) ret = ret.ToUniversalTime();
+
+            return ret;
+        }
+
+        // 文字列を int 型に変換する
+        public static int StrToInt(string str)
+        {
+            try
+            {
+                str = str.Trim();
+                str = str.Replace(",", "");
+                if (int.TryParse(str, out int ret))
+                {
+                    return ret;
+                }
+
+                return 0;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public static bool IsNumber(string str)
+        {
+            str = str.Trim();
+            str = str.Replace(",", "");
+
+            if (string.IsNullOrEmpty(str)) return false;
+
+            foreach (char c in str)
+            {
+                if (IsNumber(c) == false)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool IsNumber(char c)
+        {
+            if (c >= '0' && c <= '9')
+            {
+            }
+            else if (c == '-')
+            {
+            }
+            else
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static DateTime StrToDate(string str, bool toUtc = false, bool emptyToZeroDateTime = false)
+        {
+            if (emptyToZeroDateTime && string.IsNullOrEmpty(str)) return new DateTime(0);
+
+            string[] sps =
+                {
+                    "/",
+                    "/",
+                    "-",
+                    ":",
+                    "年",
+                    "月",
+                    "日",
+                };
+            str = str.Trim();
+            //Str.NormalizeString(ref str, true, true, false, false);
+
+            string[] youbi =
+            {
+                "月", "火", "水", "木", "金", "土", "日",
+            };
+
+            foreach (string ys in youbi)
+            {
+                string ys2 = string.Format("({0})", ys);
+
+                str = str.Replace(ys2, "");
+            }
+
+            string[] tokens;
+
+            DateTime ret = new DateTime(0);
+
+            tokens = str.Split(sps, StringSplitOptions.RemoveEmptyEntries);
+            if (tokens.Length == 3)
+            {
+                // yyyy/mm/dd
+                string yearStr = tokens[0];
+                string monthStr = tokens[1];
+                string dayStr = tokens[2];
+                int year = 0;
+                int month = 0;
+                int day = 0;
+
+                if ((yearStr.Length == 1 || yearStr.Length == 2) && IsNumber(yearStr))
+                {
+                    year = 2000 + StrToInt(yearStr);
+                }
+                else if (yearStr.Length == 4 && IsNumber(yearStr))
+                {
+                    year = StrToInt(yearStr);
+                }
+
+                if ((monthStr.Length == 1 || monthStr.Length == 2) && IsNumber(monthStr))
+                {
+                    month = StrToInt(monthStr);
+                }
+                if ((dayStr.Length == 1 || dayStr.Length == 2) && IsNumber(dayStr))
+                {
+                    day = StrToInt(dayStr);
+                }
+
+                if (year < 1800 || year > 9000 || month <= 0 || month >= 13 || day <= 0 || day >= 32)
+                {
+                    throw new ArgumentException(str);
+                }
+
+                ret = new DateTime(year, month, day);
+            }
+            else if (tokens.Length == 1)
+            {
+                if (str.Length == 8)
+                {
+                    // yyyymmdd
+                    string yearStr = str.Substring(0, 4);
+                    string monthStr = str.Substring(4, 2);
+                    string dayStr = str.Substring(6, 2);
+                    int year = int.Parse(yearStr);
+                    int month = int.Parse(monthStr);
+                    int day = int.Parse(dayStr);
+
+                    if (year < 1800 || year > 9000 || month <= 0 || month >= 13 || day <= 0 || day >= 32)
+                    {
+                        throw new ArgumentException(str);
+                    }
+
+                    ret = new DateTime(year, month, day);
+                }
+                else if (str.Length == 6)
+                {
+                    // yymmdd
+                    string yearStr = str.Substring(0, 2);
+                    string monthStr = str.Substring(2, 2);
+                    string dayStr = str.Substring(4, 2);
+                    int year = int.Parse(yearStr) + 2000;
+                    int month = int.Parse(monthStr);
+                    int day = int.Parse(dayStr);
+
+                    if (year < 1800 || year > 9000 || month <= 0 || month >= 13 || day <= 0 || day >= 32)
+                    {
+                        throw new ArgumentException(str);
+                    }
+
+                    ret = new DateTime(year, month, day);
+                }
+            }
+            else
+            {
+                throw new ArgumentException(str);
+            }
+
+            if (toUtc)
+            {
+                ret = ret.ToUniversalTime();
+            }
+
+            return ret;
+        }
+
+
+        public static DateTime StrToTime(string str, bool toUtc = false, bool emptyToZeroDateTime = false)
+        {
+            if (emptyToZeroDateTime && string.IsNullOrEmpty(str)) return new DateTime(0);
+
+            DateTime ret = new DateTime(0);
+
+            string[] sps =
+                {
+                    "/",
+                    "-",
+                    ":",
+                    "時",
+                    "分",
+                    "秒",
+                };
+            
+            str = str.Trim();
+
+            string[] tokens;
+
+            tokens = str.Split(sps, StringSplitOptions.RemoveEmptyEntries);
+            if (tokens.Length == 3)
+            {
+                // hh:mm:ss
+                string hourStr = tokens[0];
+                string minuteStr = tokens[1];
+                string secondStr = tokens[2];
+                string msecStr = "";
+                int hour = -1;
+                int minute = -1;
+                int second = -1;
+                int msecond = 0;
+                long add_ticks = 0;
+
+                int msec_index = secondStr.IndexOf(".");
+                if (msec_index != -1)
+                {
+                    msecStr = secondStr.Substring(msec_index + 1);
+                    secondStr = secondStr.Substring(0, msec_index);
+
+                    msecStr = "0." + msecStr;
+
+                    decimal tmp = decimal.Parse(msecStr);
+                    msecond = (int)((tmp % 1.0m) * 1000.0m);
+                    add_ticks = (int)((tmp % 0.001m) * 10000000.0m);
+                }
+
+                if ((hourStr.Length == 1 || hourStr.Length == 2) && IsNumber(hourStr))
+                {
+                    hour = StrToInt(hourStr);
+                }
+                if ((minuteStr.Length == 1 || minuteStr.Length == 2) && IsNumber(minuteStr))
+                {
+                    minute = StrToInt(minuteStr);
+                }
+                if ((secondStr.Length == 1 || secondStr.Length == 2) && IsNumber(secondStr))
+                {
+                    second = StrToInt(secondStr);
+                }
+
+                if (hour < 0 || hour >= 25 || minute < 0 || minute >= 60 || second < 0 || second >= 60 || msecond < 0 || msecond >= 1000)
+                {
+                    throw new ArgumentException(str);
+                }
+
+                ret = new DateTime(2000, 1, 1, hour, minute, second, msecond).AddTicks(add_ticks);
+            }
+            else if (tokens.Length == 2)
+            {
+                // hh:mm
+                string hourStr = tokens[0];
+                string minuteStr = tokens[1];
+                int hour = -1;
+                int minute = -1;
+                int second = 0;
+
+                if ((hourStr.Length == 1 || hourStr.Length == 2) && IsNumber(hourStr))
+                {
+                    hour = StrToInt(hourStr);
+                }
+                if ((minuteStr.Length == 1 || minuteStr.Length == 2) && IsNumber(minuteStr))
+                {
+                    minute = StrToInt(minuteStr);
+                }
+
+                if (hour < 0 || hour >= 25 || minute < 0 || minute >= 60 || second < 0 || second >= 60)
+                {
+                    throw new ArgumentException(str);
+                }
+
+                ret = new DateTime(2000, 1, 1, hour, minute, second);
+            }
+            else if (tokens.Length == 1)
+            {
+                string hourStr = tokens[0];
+                int hour = -1;
+                int minute = 0;
+                int second = 0;
+                int msec = 0;
+
+                if ((hourStr.Length == 1 || hourStr.Length == 2) && IsNumber(hourStr))
+                {
+                    // hh
+                    hour = StrToInt(hourStr);
+                }
+                else
+                {
+                    if ((hourStr.Length == 4) && IsNumber(hourStr))
+                    {
+                        // hhmm
+                        int i = StrToInt(hourStr);
+                        hour = i / 100;
+                        minute = i % 100;
+                    }
+                    else if ((hourStr.Length == 6) && IsNumber(hourStr))
+                    {
+                        // hhmmss
+                        int i = StrToInt(hourStr);
+                        hour = i / 10000;
+                        minute = ((i % 10000) / 100);
+                        second = i % 100;
+                    }
+                    else if ((hourStr.Length == 10 && hourStr[6] == '.'))
+                    {
+                        // hhmmss.abc
+                        int i = StrToInt(hourStr.Substring(0, 6));
+                        hour = i / 10000;
+                        minute = ((i % 10000) / 100);
+                        second = i % 100;
+
+                        msec = StrToInt(hourStr.Substring(7));
+                    }
+                }
+
+                if (hour < 0 || hour >= 25 || minute < 0 || minute >= 60 || second < 0 || second >= 60 || msec < 0 || msec >= 1000)
+                {
+                    throw new ArgumentException(str);
+                }
+
+                ret = new DateTime(2000, 1, 1, hour, minute, second, msec);
+            }
+            else
+            {
+                throw new ArgumentException(str);
+            }
+
+            if (toUtc)
+            {
+                ret = ret.ToUniversalTime();
+            }
+
+            return ret;
+        }
+
+        public static DateTime GetLinkerTimestampUtc(Assembly assembly)
+        {
+            var location = assembly.Location;
+            return GetLinkerTimestampUtc(location);
+        }
+
+        public static DateTime GetLinkerTimestampUtc(string filePath)
+        {
+            const int peHeaderOffset = 60;
+            const int linkerTimestampOffset = 8;
+            var bytes = new byte[2048];
+
+            using (var file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                file.Read(bytes, 0, bytes.Length);
+            }
+
+            var headerPos = BitConverter.ToInt32(bytes, peHeaderOffset);
+            var secondsSince1970 = BitConverter.ToInt32(bytes, headerPos + linkerTimestampOffset);
+            var dt = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return dt.AddSeconds(secondsSince1970);
+        }
+
+        static DateTime GetThisAssemblyBuildDateInternal()
+        {
+            return GetLinkerTimestampUtc(typeof(BuildTimeStampUtil).Assembly);
+        }
+
+        static DateTime? cached = null;
+
+        public static DateTime GetThisAssemblyBuildDate()
+        {
+            if (cached == null)
+            {
+                cached = GetThisAssemblyBuildDateInternal();
+            }
+
+            return cached.Value;
+        }
+    }
+
     internal class WindowCaptionManager : IActiveDocumentChangeListener {
+
+        public static string GetTimeStampStr()
+        {
+            var dt = BuildTimeStampUtil.GetThisAssemblyBuildDate();
+
+            return string.Format("{0:D4}.{1:D2}", dt.Year, dt.Month);
+        }
+
         public void OnDocumentActivated(IPoderosaMainWindow window, IPoderosaDocument document) {
-            window.AsForm().Text = String.Format("{0} - Poderosa", document.Caption);
+            window.AsForm().Text = String.Format("{0} - Poderosa {1}", document.Caption, GetTimeStampStr());
         }
 
         public void OnDocumentDeactivated(IPoderosaMainWindow window) {
-            window.AsForm().Text = "Poderosa";
+            window.AsForm().Text = string.Format("Poderosa {0}", GetTimeStampStr());
         }
     }
 }
