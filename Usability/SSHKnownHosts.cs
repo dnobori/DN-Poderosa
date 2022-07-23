@@ -79,7 +79,8 @@ namespace Poderosa.Usability {
             string local = (info.Protocol == SSHProtocol.SSH1) ? _dataForSSH1[ToKeyString(info)] : _dataForSSH2[ToKeyString(info)];
 
             if (local == null) {
-                return AskUserReliability(info, keystr, "Message.HostKeyChecker.AskHostKeyRegister");
+                Update(info, keystr, true);
+                return true;
             }
             else if (keystr != local) {
                 return AskUserReliability(info, keystr, "Message.HostKeyChecker.AskHostKeyRenew");
