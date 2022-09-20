@@ -172,7 +172,7 @@ namespace Poderosa.Protocols {
                 }
             }
 
-            tp.EnableAgentForwarding = GetBoolValue(node, "enableAgentForwarding", false);
+            tp.EnableAgentForwarding = GetBoolValue(node, "enableAgentForwarding", true);
 
             tp.EnableX11Forwarding = GetBoolValue(node, "enableX11Forwarding", false);
 
