@@ -67,7 +67,10 @@ namespace Poderosa.Sessions {
             ITerminalParameter param = (ITerminalParameter)ts.TerminalTransmission.Connection.Destination.Clone();
             ISSHLoginParameter ssh = (ISSHLoginParameter)param.GetAdapter(typeof(ISSHLoginParameter));
             if (ssh != null)
+            {
                 ssh.LetUserInputPassword = false;
+                ssh.IsReproduceSession = true;
+            }
             ITerminalSettings settings = ts.TerminalSettings.Clone();
 
             ITerminalSession session = TerminalSessionsPlugin.Instance.TerminalSessionStartCommand.StartTerminalSession(ts.OwnerWindow, param, settings);

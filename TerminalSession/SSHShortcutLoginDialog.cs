@@ -477,7 +477,25 @@ namespace Poderosa.Sessions {
             }
 
             AdjustUI();
+
+            if (this._sshParam.LetUserInputPassword == false)
+            {
+                Timer autoOkClickTimer = new Timer();
+                autoOkClickTimer.Tick += AutoOkClientTimer_Tick;
+                autoOkClickTimer.Interval = 1;
+                autoOkClickTimer.Enabled = true;
+            }
         }
+        
+        bool autoClicked = false;
+        private void AutoOkClientTimer_Tick(object sender, EventArgs e)
+        {
+            if (autoClicked) return;
+            autoClicked = true;
+
+            this._loginButton.PerformClick();
+        }
+
         private void AdjustUI() {
             _passphraseBox.Enabled = _sshParam.AuthenticationType != AuthenticationType.KeyboardInteractive;
 

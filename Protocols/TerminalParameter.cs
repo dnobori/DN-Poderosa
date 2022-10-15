@@ -187,6 +187,9 @@ namespace Poderosa.Protocols {
         private bool _enableX11Forwarding;
         private X11ForwardingParams _x11Forwarding;
 
+        public bool IsReproduceSession { get; set; } // 再接続かどうか
+
+
         public SSHLoginParameter() {
             _method = SSHProtocol.SSH2;
             _authType = AuthenticationType.Password;

@@ -318,6 +318,8 @@ namespace Poderosa.Protocols {
             set;
         }
 
+        bool IsReproduceSession { get; set; } // 再接続かどうか
+
         /// <summary>
         /// Whether the agent forwarding is enabled.
         /// </summary>

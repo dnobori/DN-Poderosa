@@ -201,7 +201,7 @@ namespace Poderosa.Sessions {
             }
             public ITerminalConnection EstablishConnection(IPoderosaMainWindow window, ITerminalParameter destination, ITerminalSettings settings) {
                 ISSHLoginParameter ssh = (ISSHLoginParameter)destination.GetAdapter(typeof(ISSHLoginParameter));
-                if (ssh.LetUserInputPassword && ssh.AuthenticationType != Granados.AuthenticationType.KeyboardInteractive) { //ダイアログで入力を促して接続
+                if (ssh.IsReproduceSession == false && ssh.AuthenticationType != Granados.AuthenticationType.KeyboardInteractive) { //ダイアログで入力を促して接続
                     SSHShortcutLoginDialog dlg = new SSHShortcutLoginDialog(window, ssh, settings);
                     if (dlg.ShowDialog(window.AsForm()) == DialogResult.OK) {
                         ITerminalConnection con = dlg.Result;
