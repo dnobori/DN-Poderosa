@@ -207,6 +207,9 @@ namespace Poderosa.Protocols {
             _passwordOrPassphrase = src._passwordOrPassphrase;
             _letUserInputPassword = src._letUserInputPassword;
             _authKeyProvider = src._authKeyProvider;
+            _enableAgentForwarding = src._enableAgentForwarding;
+            _enableX11Forwarding = src._enableX11Forwarding;
+            _x11Forwarding = src._x11Forwarding;
         }
 
         [MacroConnectionParameter]
