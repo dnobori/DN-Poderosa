@@ -1,0 +1,33 @@
+﻿接続先 SSH サーバーにディスク容量不足がある場合、SSH 鍵フォワーディングを有効にしていると接続に失敗する原因判明
+
+2024/2/15 by 登
+
+--- ここから ---
+Revision: 8ac42d2d70f13a00408eb642ad6dbfc373a7e1e7
+Author: Iwasa Kazmi <kzmi@users.sourceforge.net>
+Date: 2016/09/13 0:50:31
+Message:
+use async/await for the protocol sequence control in SSH2
+
+----
+Modified: Granados/SSH2Channel.cs
+--- ここまで ---
+
+
+2022/07/23 e40b  エラー発生
+2017/12/03 8fdf  エラー発生
+2017/01/03 38cc  エラー発生
+2016/10/04 a8bf  エラー発生 (旧 UI)
+2016/09/25 b07c  エラー発生 (旧 UI)
+2016/09/14 751c  エラー発生 (旧 UI)
+2016/09/13 8ac4  エラー発生 (旧 UI)
+
+
+
+
+2016/09/10 a310  OK!!
+2016/09/01 da1e  OK！！
+2016/08/03 96cc  エラーは出ないが、エージェントフォワーディングが機能しない
+
+
+
