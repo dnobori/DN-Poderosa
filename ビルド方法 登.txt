@@ -3,6 +3,8 @@
 
 cd /d C:\git\DN-Poderosa\build\
 
+cleanall
+
 buildall-release
 
 
