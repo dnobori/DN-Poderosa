@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalEmulator", "TerminalEmulator\TerminalEmulator.csproj", "{7F80731C-443A-4533-90D1-1643A5C1364E}"
@@ -16,6 +16,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{9568D8AC-7B55-42E0-ACD7-204E397E7048}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Executable", "Executable\Executable.csproj", "{E8021FDF-730E-4D82-853C-7825B617E93D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9D114B8B-E62C-4FBF-B281-0227755C8091} = {9D114B8B-E62C-4FBF-B281-0227755C8091}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Usability", "Usability\Usability.csproj", "{7B6BA4DA-8390-4605-B979-C2D1CC09BD9A}"
 EndProject
