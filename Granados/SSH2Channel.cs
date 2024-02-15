@@ -1044,8 +1044,9 @@ namespace Granados.SSH2 {
                 }
                 else {
                     Trace("CH[{0}] the request of the agent forwarding has been rejected.", LocalChannel);
-                    _state = MinorState.NotReady;
-                    goto RequestFailed;
+                    //_state = MinorState.NotReady;
+                    //goto RequestFailed;
+                    return true; // 2024-02-15 by dnobori: Ignore error.  see "240215 開発メモ 登 SSH サーバーにディスク容量不足がある場合エラー発生.txt".
                 }
             }
 
