@@ -107,7 +107,7 @@ namespace Poderosa.Forms {
 
         public static TabBarDrawing CreateNormalStyle(Graphics g) {
             TabBarDrawing t = new TabBarDrawing();
-            t._font = new Font("Tahoma", 9f);
+            t._font = FastFont2.CreateFont("Tahoma", 9);
 
             Color c = SystemColors.Control;
             t._backgroundColor = c;

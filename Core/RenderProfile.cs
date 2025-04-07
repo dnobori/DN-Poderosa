@@ -438,7 +438,7 @@ namespace Poderosa.View {
             _underlinefont = new FontHandle(new Font(_font.Font, fs | FontStyle.Underline), _useClearType);
             _boldunderlinefont = new FontHandle(new Font(_font.Font, fs | FontStyle.Underline | FontStyle.Bold), _useClearType);
 
-            _cjkFont = new FontHandle(new Font(_cjkFontName, _fontSize), _useClearType);
+            _cjkFont = new FontHandle(FastFont3.CreateFont(_cjkFontName, _fontSize), _useClearType);
             fs = _cjkFont.Font.Style;
             _cjkBoldfont = new FontHandle(new Font(_cjkFont.Font, fs | FontStyle.Bold), _useClearType);
             _cjkUnderlinefont = new FontHandle(new Font(_cjkFont.Font, fs | FontStyle.Underline), _useClearType);

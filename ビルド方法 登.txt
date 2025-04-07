@@ -13,3 +13,6 @@ buildall-release
 C:\git\DN-Poderosa\build\out
 に生成される。
 
+
+C:\git\DN-Poderosa\build\out\poderosa.exe
+
