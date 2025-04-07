@@ -32,9 +32,9 @@ namespace Poderosa.Forms {
         private ToolStrip _currentToolStrip;
 
         public PoderosaToolStripContainer(IPoderosaMainWindow parent, string location_info) {
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             _parent = parent;
             _initialLocationInfo = location_info;
-
             //this.Height = 25; //適切なサイズを決める方法がわからない
             this.Dock = DockStyle.Fill;
             //左右に入れるのは見苦しい。やめる。

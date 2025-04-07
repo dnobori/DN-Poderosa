@@ -446,7 +446,7 @@ namespace Poderosa.Pipe {
             // 
             // OpenPipeDialog
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this._buttonCancel;
             this.ClientSize = new System.Drawing.Size(361, 545);
             this.Controls.Add(this.panelModeSwitch);

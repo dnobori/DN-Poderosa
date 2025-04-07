@@ -87,6 +87,7 @@ namespace Poderosa.MacroInternal {
             // 
             // MacroTrace
             // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.StartPosition = FormStartPosition.Manual;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
             this.ClientSize = new System.Drawing.Size(352, 237);

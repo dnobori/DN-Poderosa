@@ -22,6 +22,7 @@ using System.Reflection;
 
 using Poderosa.Plugins;
 using Poderosa.Plugin.Remoting;
+using System.Windows.Forms;
 
 namespace Poderosa.Boot {
 
@@ -34,6 +35,8 @@ namespace Poderosa.Boot {
 
         // for compatibility
         public static IPoderosaApplication CreatePoderosaApplication(string[] args) {
+            Application.SetCompatibleTextRenderingDefault(false);
+
             return CreatePoderosaApplication(args, false);
         }
 

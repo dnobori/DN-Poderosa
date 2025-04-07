@@ -87,6 +87,7 @@ namespace Poderosa.Sessions {
             // 
             // LoginDialogBase
             // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(292, 266);
             this.Controls.Add(this._cancelButton);
             this.Controls.Add(this._loginButton);

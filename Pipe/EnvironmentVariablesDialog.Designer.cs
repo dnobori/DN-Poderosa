@@ -141,7 +141,7 @@ namespace Poderosa.Pipe {
             // EnvironmentVariablesDialog
             // 
             this.AcceptButton = this._buttonOK;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this._buttonCancel;
             this.ClientSize = new System.Drawing.Size(402, 246);
             this.Controls.Add(this._labelDescription);

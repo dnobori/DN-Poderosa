@@ -147,6 +147,7 @@ namespace Poderosa.Forms {
             // EditEscapeSequenceColor
             // 
             this.AcceptButton = this._okButton;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
             this.CancelButton = this._cancelButton;
             this.ClientSize = new System.Drawing.Size(258, 266);

@@ -682,7 +682,7 @@ namespace Poderosa.Sessions {
             // OpenSessionTabPageSSH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this._optionsTab);
             this.Controls.Add(this._usernameLabel);
             this.Controls.Add(this._portBox);

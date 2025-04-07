@@ -354,6 +354,7 @@ namespace Poderosa.Forms {
             // KeyGenWizard
             // 
             this.AcceptButton = this._nextButton;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
             this.CancelButton = this._cancelButton;
             this.ClientSize = new System.Drawing.Size(930, 223);

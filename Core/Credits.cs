@@ -98,6 +98,7 @@ namespace Poderosa.Forms {
             // Credits
             // 
             this.AcceptButton = this._okButton;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this._okButton;

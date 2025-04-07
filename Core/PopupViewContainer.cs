@@ -53,7 +53,7 @@ namespace Poderosa.Forms {
             // PopupViewContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "PopupViewContainer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

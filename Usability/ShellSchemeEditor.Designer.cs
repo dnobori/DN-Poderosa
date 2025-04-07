@@ -239,7 +239,7 @@ namespace Poderosa.Usability {
             // 
             this.AcceptButton = this._okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this._cancelButton;
             this.ClientSize = new System.Drawing.Size(352, 418);
             this.Controls.Add(this._cancelButton);

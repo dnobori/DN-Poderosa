@@ -126,7 +126,7 @@ namespace Poderosa.SFTP {
             // SFTPForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(385, 356);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonDownload);

@@ -107,6 +107,7 @@ namespace Poderosa.Usability {
             // AboutBox
             // 
             this.AcceptButton = this._okButton;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this._okButton;

@@ -87,6 +87,7 @@ namespace Poderosa.UI {
             cancelButton.TabIndex = 0;
             cancelButton.DialogResult = DialogResult.Cancel;
             this.CancelButton = cancelButton;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
         }
 
         public Color Color {

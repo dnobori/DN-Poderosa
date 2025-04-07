@@ -110,8 +110,8 @@
             // DataLoadDialog
             // 
             this.AcceptButton = this.buttonOK;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(373, 147);
             this.ControlBox = false;

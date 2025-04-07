@@ -40,6 +40,7 @@ namespace Poderosa.Forms {
         private MessageBoxInternalDelegate _messageBoxInternalDelegate;
 
         public PoderosaForm() {
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             _contextMenusToDispose = new List<ContextMenuStrip>();
 
             components = new System.ComponentModel.Container();
